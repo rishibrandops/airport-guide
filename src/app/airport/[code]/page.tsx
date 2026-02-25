@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { supabaseAdmin } from '@/lib/supabase-server'
+import { getSupabaseAdmin } from '@/lib/supabase-server'
 import { Airport, Flight, TransportConnection, Parking, FoodAndDrink, Lounge } from '@/types/database'
 import FlightBoard from '@/components/FlightBoard'
 
@@ -13,7 +13,7 @@ interface Props {
 }
 
 async function getAirport(code: string): Promise<Airport | null> {
-  const { data } = await supabaseAdmin
+  const { data } = await getSupabaseAdmin()
     .from('airports')
     .select('*')
     .eq('iata_code', code.toUpperCase())
@@ -22,7 +22,7 @@ async function getAirport(code: string): Promise<Airport | null> {
 }
 
 async function getFlights(airportId: string): Promise<Flight[]> {
-  const { data } = await supabaseAdmin
+  const { data } = await getSupabaseAdmin()
     .from('flights')
     .select('*')
     .eq('airport_id', airportId)
@@ -32,7 +32,7 @@ async function getFlights(airportId: string): Promise<Flight[]> {
 }
 
 async function getTransport(airportId: string): Promise<TransportConnection[]> {
-  const { data } = await supabaseAdmin
+  const { data } = await getSupabaseAdmin()
     .from('transport_connections')
     .select('*')
     .eq('airport_id', airportId)
@@ -41,7 +41,7 @@ async function getTransport(airportId: string): Promise<TransportConnection[]> {
 }
 
 async function getParking(airportId: string): Promise<Parking[]> {
-  const { data } = await supabaseAdmin
+  const { data } = await getSupabaseAdmin()
     .from('parking')
     .select('*')
     .eq('airport_id', airportId)
@@ -49,7 +49,7 @@ async function getParking(airportId: string): Promise<Parking[]> {
 }
 
 async function getFood(airportId: string): Promise<FoodAndDrink[]> {
-  const { data } = await supabaseAdmin
+  const { data } = await getSupabaseAdmin()
     .from('food_and_drink')
     .select('*')
     .eq('airport_id', airportId)
@@ -58,7 +58,7 @@ async function getFood(airportId: string): Promise<FoodAndDrink[]> {
 }
 
 async function getLounges(airportId: string): Promise<Lounge[]> {
-  const { data } = await supabaseAdmin
+  const { data } = await getSupabaseAdmin()
     .from('lounges')
     .select('*')
     .eq('airport_id', airportId)

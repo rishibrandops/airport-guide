@@ -1,14 +1,14 @@
 import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
-import { supabaseAdmin } from '@/lib/supabase-server'
+import { getSupabaseAdmin } from '@/lib/supabase-server'
 import { Airport } from '@/types/database'
 
 export const dynamic = 'force-dynamic'
 import SearchBar from '@/components/SearchBar'
 
 async function getFeaturedAirports(): Promise<Airport[]> {
-  const { data } = await supabaseAdmin
+  const { data } = await getSupabaseAdmin()
     .from('airports')
     .select('*')
     .order('annual_passengers', { ascending: false })

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
-import { supabaseAdmin } from '@/lib/supabase-server'
+import { getSupabaseAdmin } from '@/lib/supabase-server'
 import { Airport } from '@/types/database'
 
 export const dynamic = 'force-dynamic'
@@ -11,7 +11,7 @@ interface Props {
 }
 
 async function getAirports(search?: string, continent?: string, country?: string): Promise<Airport[]> {
-  let query = supabaseAdmin.from('airports').select('*').order('name')
+  let query = getSupabaseAdmin().from('airports').select('*').order('name')
 
   if (search) {
     const upper = search.toUpperCase()
