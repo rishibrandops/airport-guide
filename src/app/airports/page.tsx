@@ -4,6 +4,8 @@ import { Card, CardContent } from '@/components/ui/card'
 import { supabaseAdmin } from '@/lib/supabase-server'
 import { Airport } from '@/types/database'
 
+export const dynamic = 'force-dynamic'
+
 interface Props {
   searchParams: Promise<{ search?: string; continent?: string; country?: string }>
 }

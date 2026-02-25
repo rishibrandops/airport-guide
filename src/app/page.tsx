@@ -3,6 +3,8 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { supabaseAdmin } from '@/lib/supabase-server'
 import { Airport } from '@/types/database'
+
+export const dynamic = 'force-dynamic'
 import SearchBar from '@/components/SearchBar'
 
 async function getFeaturedAirports(): Promise<Airport[]> {
